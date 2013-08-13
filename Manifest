@@ -3,3 +3,17 @@
 # INCLUDE *
 # EXCLUDE **/.DS_Store
 # EXCLUDE .rarity
+
+.gitignore
+bin/nlz
+lib/nlz.rb
+lib/nlz/bin.rb
+lib/nlz/file_ext.rb
+lib/nlz/normalise.rb
+lib/nlz/q.rb
+lib/nlz/smooth.rb
+lib/nlz/string_ext.rb
+Manifest
+nlz.gemspec
+README.md
+version.txt

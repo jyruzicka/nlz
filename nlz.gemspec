@@ -4,12 +4,12 @@ Gem::Specification.new do |s|
   s.name = "nlz"
   s.version = File.read('version.txt')
   
-  s.summary = "Gem summary here."
-  s.description = "Gem description here."
+  s.summary = "A gem for statistical analysis."
+  s.description = "NLZ adds several handy methods to the Hash class. See the readme for usage instructions"
   
   s.author = 'Jan-Yves Ruzicka'
-  s.email = 'janyves.ruzicka@gmail.com'
-  s.homepage = 'https://github.com/jyruzicka/nlz'
+  s.email = 'jan@1klb.com'
+  s.homepage = 'https://www.1klb.com'
   
   s.files = File.read('Manifest').split("\n").select{ |l| !l.start_with?('#') && l != ''}
   s.require_paths << 'lib'
