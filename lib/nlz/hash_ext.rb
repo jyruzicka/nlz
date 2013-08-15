@@ -5,7 +5,7 @@ class Hash
   # @param blck [Lambda] The block to run on every value
   # @return [Hash] The resultant hash.
   def modify &blck
-    self.reduce({}){ |hsh, (k,v)| hsh[k] = blck[v] }
+    self.reduce({}){ |hsh, (k,v)| hsh[k] = blck[v];hsh }
   end
 
   # Modifies the hash in place by running the given block on the
