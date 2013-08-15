@@ -8,7 +8,7 @@ class Hash
   # @return [Hash] The binned hash
   def bin size
     my_keys = self.keys #cache this, we'll be referring to it a lot
-    keys_max = my_keys.max
+    key_max = my_keys.max
 
     binned_hash = {}
     ceiling = 0
