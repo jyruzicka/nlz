@@ -9,6 +9,7 @@ bin/nlz
 lib/nlz.rb
 lib/nlz/bin.rb
 lib/nlz/file_ext.rb
+lib/nlz/hash_ext.rb
 lib/nlz/normalise.rb
 lib/nlz/q.rb
 lib/nlz/smooth.rb

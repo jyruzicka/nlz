@@ -8,17 +8,17 @@ Welcome to nlz. Nlz (short for "analyse") is a stastical analysis gem (except al
 
 ## Use
 
-  require "nlz"
-  data = {
-    1 => 0.4,
-    2 => 0.3,
-    3 => 0.6,
-    4 => 0.7,
-    5 => 0.8
-  }
-  # But what you really want to do is...
-  data = File.tsv("file.dat")
-  data2 = File.csv("file.csv")
+    require "nlz"
+    data = {
+      1 => 0.4,
+      2 => 0.3,
+      3 => 0.6,
+      4 => 0.7,
+      5 => 0.8
+    }
+    # But what you really want to do is...
+    data = File.tsv("file.dat")
+    data2 = File.csv("file.csv")
 
 ## Binning data
 
@@ -43,3 +43,9 @@ Normalised data is set such that the minimum value is 0 and the maximum value is
 If you're doing powder X-ray diffraction you'll find all sorts of data listed using the Copper K-alpha diffraction angle as an abscissa. Which is silly, especially if you ever have to compare it to synchrotron PXRD. Instead, you should plot all your PXRD (and all scattering) data against the momentum transfer vector Q (units: 1/A). And handily enough, you can do it with this little package:
 
     q_data = data.momentum_transfer(wavelength:1.96) # wavelength is in angstroms, and will default to copper
+
+# History
+
+## 0.1.0
+
+* First version!

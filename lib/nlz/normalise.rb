@@ -9,6 +9,6 @@ class Hash
     v_max = my_values.max
     range = v_max - v_min
 
-    reduce({}){ |hsh, (k,v)| hsh[k] = (v - v_min) / range }
+    return modify{ |v| (v - v_min) / range }
   end
 end

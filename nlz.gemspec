@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md']
 
   # Add runtime dependencies here
-  #s.add_runtime_dependency 'commander', '~> 4.1.2'
+  s.add_runtime_dependency 'commander', '~> 4.1.4'
 end

@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
-# Place your binary code here
+# require "commander/import"
+
+# version_file = File.join(File.dirname(File.realpath(__FILE__)),"../version.txt")
+# program :name, "nlz"
+# program :version, File.read(version_file)
+# program :description, "Binary interface to the nlz library."
+
+# command :bin do
