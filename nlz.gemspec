@@ -3,6 +3,7 @@
 Gem::Specification.new do |s|
   s.name = "nlz"
   s.version = File.read('version.txt')
+  s.licenses = "CC-BY-SA"
   
   s.summary = "A gem for statistical analysis."
   s.description = "NLZ adds several handy methods to the Hash class. See the readme for usage instructions"

@@ -6,12 +6,12 @@ class Hash
   #
   # @param size [Fixnum] The size of the bin
   # @return [Hash] The binned hash
-  def bin size
+  def bin(size,start:0)
     my_keys = self.keys #cache this, we'll be referring to it a lot
     key_max = my_keys.max
 
     binned_hash = {}
-    ceiling = 0
+    ceiling = start
 
     begin
       floor = ceiling

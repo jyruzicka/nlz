@@ -1,10 +1,102 @@
 #!/usr/bin/env ruby
 
-# require "commander/import"
+require "commander/import"
 
-# version_file = File.join(File.dirname(File.realpath(__FILE__)),"../version.txt")
-# program :name, "nlz"
-# program :version, File.read(version_file)
-# program :description, "Binary interface to the nlz library."
+version_file = File.join(File.dirname(File.realpath(__FILE__)),"../version.txt")
+program :name, "nlz"
+program :version, File.read(version_file)
+program :description, "Binary interface to the nlz library. If file is not supplied for any command, will read from STDIN instead."
 
-# command :bin do
+def collect_data args, separator=nil
+  file = args.shift
+  separator ||= if (file)
+    case File.extname(file)
+    when ".csv"
+      /,\s*/
+    when ".tsv"
+      "\t"
+    else
+      /\s+/
+    end
+  else
+    /\s+/
+  end
+  
+  data = if file
+    File.read(file)
+  else
+    $stdin.read
+  end
+
+  data.parse(separator)
+end
+
+command :bin do |c|
+  c.syntax = "nlz bin --size=SIZE [--separator=SEP] [file]"
+  c.option "--size=SIZE", Integer, "Size of each bin (required)."
+  c.option "--separator=SEP", String, "Separator between fields. Default: space."
+  c.description = "Bin data."
+
+  c.action do |args,opts|
+    if !opts.size
+      puts "You must supply a bin size."
+      exit 1
+    end
+
+    data = collect_data(args, opts.separator)
+    puts data.bin(args.size)
+  end
+end
+
+command :normalize do |c|
+  c.syntax = "nlz normalize [--separator=SEP] [file]"
+  c.option "--separator=SEP", String, "Separator between fields. Default: space."
+  c.description = "Normalise data - ensure all values lie between 0 and 1."
+
+  c.action do |args,opts|
+    data = collect_data(args, opts.separator)
+    puts data.normalise
+  end
+end
+
+command :momentum do |c|
+  c.syntax = "nlz momentum [--separator=SEP] [--wavelength=WL] [file]"
+  c.option "--separator=SEP", String, "Separator between fields. Default: space."
+  c.option "--wavelength=WL", Float, "Wavelength of incident radiation. Defaults to Copper K-alpha"
+  c.description = "Convert data from units of 2-theta to Q (momentum transfer)."
+
+  c.action do |args,opts|
+    opts.default wavelength: 1.54056
+
+    data = collect_data(args, opts.separator)
+    puts data.momentum_transfer(opts.wavelength)
+  end
+end
+
+command :smooth do |c|
+  c.syntax = "nlz smooth [--separator=SEP] [--range=RNG] [--iterations=I] [file]"
+  c.option "--separator=SEP", String, "Separator between fields. Default: space."
+  c.option "--range=RNG", Integer, "Range of data points over which to smooth."
+  c.option "--iterations=I", Integer, "Number of times to smooth."
+  c.description = "Smooth data by averaging points in a given range."
+
+  c.action do |args,opts|
+    opts.default range: 1, iterations: 1
+
+    data = collect_data(args, opts.separator)
+    puts data.smooth(range:opts.range, iterations:opts.iterations)
+  end
+end
+
+command :trim do |c|
+  c.syntax = "nlz trim [--separator=SEP] [--minimum=MIN] [--maximum=MAX] [file]"
+  c.option "--separator=SEP", String, "Separator between fields. Default: space."
+  c.option "--minimum=MIN", Integer, "Trim everything below this value."
+  c.option "--maximum=MAX", Integer, "Trim everything above this value."
+  c.description = "Trim data based on x-values."
+
+  c.action do |args,opts|
+    data = collect_data(args, opts.separator)
+    puts data.trim(minimum:opts.minimum, maximum:opts.maximum)
+  end
+end

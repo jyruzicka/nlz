@@ -4,7 +4,12 @@ Welcome to nlz. Nlz (short for "analyse") is a stastical analysis gem (except al
 
 ## Installation
 
-*work in progress*
+I'm not going to put this on rubygems, so the best way to install this is:
+
+* Download from GitHub.
+* In terminal, `cd` to this directory
+* Run `rake spec` if you want to make sure it works
+* Run `rake install` to install
 
 ## Use
 
@@ -45,6 +50,14 @@ If you're doing powder X-ray diffraction you'll find all sorts of data listed us
     q_data = data.momentum_transfer(wavelength:1.96) # wavelength is in angstroms, and will default to copper
 
 # History
+
+## 0.4.0
+
+* Basic rspec coverage, Rakefile with installer
+
+## 0.3.0
+
+Binary now included with gem. 
 
 ## 0.1.0
 

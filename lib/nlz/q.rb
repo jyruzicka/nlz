@@ -1,4 +1,4 @@
-def Hash
+class Hash
   # Convert key values from
   # 2theta to q (momentum transfer)
   # By default, this assumes you're using
@@ -7,8 +7,9 @@ def Hash
   def momentum_transfer(wavelength:1.54056)
     reduce({}) do |hsh,(k,v)|
       theta_rads = (k/2) * Math::PI / 180
-      q = 4 * Math::PI * Math::sin(theta_rads) / wavelength
+      q = (4 * Math::PI * Math::sin(theta_rads) / wavelength).round(5)
       hsh[q] = v
+      hsh
     end
   end
 end
